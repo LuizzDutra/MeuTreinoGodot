@@ -1,0 +1,201 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://CharacterParts.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.5
+height = 1.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "IdleLeft"
+
+[sub_resource type="Animation" id=3]
+resource_name = "IdleRight"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyParts/Head:frame_coords:x")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyParts/Body:frame_coords:x")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 6.0, 7.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BodyParts/Legs:frame_coords:x")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 12.0, 13.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyParts/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 34 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyParts/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 39 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BodyParts/Legs:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 46 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "WalkLeft"
+
+[sub_resource type="Animation" id=6]
+resource_name = "WalkRight"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyParts/Head:frame_coords:x")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 2.0, 3.0, 4.0, 5.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyParts/Body:frame_coords:x")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 8.0, 9.0, 10.0, 11.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BodyParts/Legs:frame_coords:x")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 14.0, 15.0, 14.0, 17.0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "IdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/IdleRight/node = SubResource( 7 )
+states/IdleRight/position = Vector2( 698, 221 )
+states/WalkRight/node = SubResource( 8 )
+states/WalkRight/position = Vector2( 971, 221 )
+transitions = [ "IdleRight", "WalkRight", SubResource( 9 ), "WalkRight", "IdleRight", SubResource( 10 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 176, 54 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BodyParts" type="Node2D" parent="."]
+
+[node name="Head" type="Sprite" parent="BodyParts"]
+position = Vector2( 0, -11 )
+texture = ExtResource( 1 )
+hframes = 31
+vframes = 12
+frame = 34
+
+[node name="Body" type="Sprite" parent="BodyParts"]
+position = Vector2( 0, -11 )
+texture = ExtResource( 1 )
+hframes = 31
+vframes = 12
+frame = 39
+
+[node name="Legs" type="Sprite" parent="BodyParts"]
+position = Vector2( 0, -11 )
+texture = ExtResource( 1 )
+hframes = 31
+vframes = 12
+frame = 46
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/IdleLeft = SubResource( 2 )
+anims/IdleRight = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/WalkLeft = SubResource( 5 )
+anims/WalkRight = SubResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 12 )
