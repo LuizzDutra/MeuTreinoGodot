@@ -39,7 +39,16 @@ margin_bottom = 38.0
 rect_scale = Vector2( 0.5, 0.5 )
 text = "Random"
 
+[node name="Animation" type="Button" parent="Player"]
+margin_left = 37.0
+margin_top = 31.0
+margin_right = 101.0
+margin_bottom = 51.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Animation"
+
 [connection signal="pressed" from="Player/Head" to="Player" method="_on_Head_pressed"]
 [connection signal="pressed" from="Player/Body" to="Player" method="_on_Body_pressed"]
 [connection signal="pressed" from="Player/Legs" to="Player" method="_on_Legs_pressed"]
 [connection signal="pressed" from="Player/Random" to="Player" method="_on_Random_pressed"]
+[connection signal="pressed" from="Player/Animation" to="Player" method="_on_Animation_pressed"]

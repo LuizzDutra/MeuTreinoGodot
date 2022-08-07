@@ -5,7 +5,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var bodyParts = $BodyParts
 
 func _ready():
-	bodyParts.get_node("Head").self_modulate = Color(1, 1, 1)
+	changeHeadModulate(Color(1,1,1))
 
 
 const head_qnt = 11
@@ -16,10 +16,14 @@ var head_select = 0 setget changeHead
 var body_select = 0 setget changeBody
 var leg_select = 0 setget changeLeg
 
+var head_modulate = Color(1, 1, 1) setget changeHeadModulate
+
+var animation_arr = ["IdleRight", "WalkRight"]
+var cur_anim = 0
 
 
 func _process(delta):
-	animationPlayer.play("IdleRight")
+	animationPlayer.play(animation_arr[cur_anim])
 
 func changeHead(n):
 	head_select = n
@@ -38,6 +42,9 @@ func randomizedSelection():
 	changeBody(int(rand_range(0, body_qnt)))
 	changeLeg(int(rand_range(0, leg_qnt)))
 	
+func changeHeadModulate(n: Color):
+	head_modulate = n
+	bodyParts.get_node("Head").modulate = n
 
 func _on_Head_pressed():
 	changeHead(head_select+1)
@@ -51,3 +58,7 @@ func _on_Legs_pressed():
 
 func _on_Random_pressed():
 	randomizedSelection()
+
+func _on_Animation_pressed():
+	cur_anim += 1
+	cur_anim = cur_anim % len(animation_arr)
