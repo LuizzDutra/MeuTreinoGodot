@@ -154,11 +154,8 @@ transitions = [ "IdleRight", "WalkRight", SubResource( 9 ), "WalkRight", "IdleRi
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 176, 54 )
+position = Vector2( 202, 56 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="BodyParts" type="Node2D" parent="."]
 
@@ -203,3 +200,73 @@ tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 12 )
+
+[node name="Buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Head" type="Button" parent="Buttons"]
+margin_left = 37.0
+margin_top = -21.0
+margin_right = 82.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Head"
+
+[node name="Body" type="Button" parent="Buttons"]
+margin_left = 37.0
+margin_top = -7.0
+margin_right = 81.0
+margin_bottom = 13.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Body"
+
+[node name="Legs" type="Button" parent="Buttons"]
+margin_left = 37.0
+margin_top = 5.0
+margin_right = 78.0
+margin_bottom = 25.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Legs"
+
+[node name="Random" type="Button" parent="Buttons"]
+margin_left = 37.0
+margin_top = 18.0
+margin_right = 101.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Random"
+
+[node name="Animation" type="Button" parent="Buttons"]
+margin_left = 37.0
+margin_top = 31.0
+margin_right = 115.0
+margin_bottom = 51.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Animation"
+
+[node name="HeadColorChanger2" type="ColorPickerButton" parent="Buttons"]
+margin_left = -50.0
+margin_top = -21.0
+margin_right = -19.0
+margin_bottom = 4.0
+rect_scale = Vector2( 0.4, 0.4 )
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="BodyColorChanger" type="ColorPickerButton" parent="Buttons"]
+margin_left = -50.0
+margin_top = -8.0
+margin_right = -20.0
+margin_bottom = 17.0
+rect_scale = Vector2( 0.4, 0.4 )
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[connection signal="pressed" from="Buttons/Head" to="." method="_on_Head_pressed"]
+[connection signal="pressed" from="Buttons/Body" to="." method="_on_Body_pressed"]
+[connection signal="pressed" from="Buttons/Legs" to="." method="_on_Legs_pressed"]
+[connection signal="pressed" from="Buttons/Random" to="." method="_on_Random_pressed"]
+[connection signal="pressed" from="Buttons/Animation" to="." method="_on_Animation_pressed"]
+[connection signal="color_changed" from="Buttons/HeadColorChanger2" to="." method="_on_HeadColorChanger2_color_changed"]
+[connection signal="color_changed" from="Buttons/BodyColorChanger" to="." method="_on_BodyColorChanger_color_changed"]
