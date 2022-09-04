@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/metal.mp3-e6c6c9245659a2732defd428844b7313.mp3str"
+
+[deps]
+
+source_file="res://Sounds/metal.mp3"
+dest_files=[ "res://.import/metal.mp3-e6c6c9245659a2732defd428844b7313.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
