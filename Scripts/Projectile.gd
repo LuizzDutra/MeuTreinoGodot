@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-var dir = Vector2.ZERO
-var impact_dir = Vector2.ZERO
+var dir = Vector2.ZERO setget changedir
 var velocity = Vector2.ZERO
 var speed = 2400
+var grav = Vector2(0, 0.98)
 
 onready var timer = $timer
 onready var impact = $impact
@@ -15,11 +15,11 @@ func _ready():
 	timer.wait_time = lifetime
 	timer.start()
 
-func _process(delta):
+func _process(_delta):
 	if not dead:
-		move_and_slide(dir * speed)
+		velocity = move_and_slide(velocity)
 		if get_slide_count() > 0:
-			impact_dir = dir.bounce(get_slide_collision(0).normal)
+			var impact_dir = dir.bounce(get_slide_collision(0).normal)
 			col_vanish(impact_dir)
 		
 		if timer.time_left == 0:
@@ -27,6 +27,10 @@ func _process(delta):
 	if dead:
 		if timer.time_left == 0:
 			queue_free()
+
+func changedir(n):
+	dir = n
+	velocity = dir * speed
 
 func vanish():
 	dir = Vector2.ZERO

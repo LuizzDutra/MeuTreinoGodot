@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/emptychambersound.mp3-3d2bdddaad1d9b04bd9f2b7ab8762007.mp3str"
+
+[deps]
+
+source_file="res://Sounds/emptychambersound.mp3"
+dest_files=[ "res://.import/emptychambersound.mp3-3d2bdddaad1d9b04bd9f2b7ab8762007.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
