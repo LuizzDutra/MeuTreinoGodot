@@ -39,7 +39,7 @@ func _process(delta):
 		if has_node("Gun"):
 			get_node("Gun").free()
 			gun = null
-		add_child(load("res://Guns/AK47.tscn").instance())
+		add_child(load("res://Guns/Shotgun.tscn").instance())
 		load_gun()
 	
 	if Input.is_action_pressed("ui_right"):
@@ -67,7 +67,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("ui_down"):
 			gun.cur_type += 1
 		
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("reload"):
 			gun.reload()
 	
 func load_gun():

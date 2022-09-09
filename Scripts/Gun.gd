@@ -20,7 +20,7 @@ var tgrsoundplayed = false
 var spread = 0.05
 var intensity = 10
 var bltCount = 1
-
+var damage = 10
 signal shot(n)
 
 func _ready():
@@ -57,8 +57,9 @@ func shoot():
 			projectile.dir = Vector2(tip2.global_position - tip.global_position).normalized()
 			projectile.dir = Vector2(projectile.dir + Vector2(rand_range(-spread, spread), rand_range(-spread, spread))).normalized()
 			projectile.global_position = tip.global_position
-			gunshot.play()
+			projectile.damage = damage
 			get_parent().get_parent().add_child(projectile)
+		gunshot.play()
 		muzzle.visible = true
 		mzltimer.start()
 		change_mag(mag_hold-1)

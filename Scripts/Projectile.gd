@@ -10,6 +10,7 @@ onready var impact = $impact
 onready var sprite = $Sprite
 var lifetime = 5
 var dead = false
+var damage = 10
 
 func _ready():
 	timer.wait_time = lifetime

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sounds/metal.mp3" type="AudioStream" id=3]
 
 [sub_resource type="Environment" id=2]
@@ -12,9 +12,6 @@ glow_blend_mode = 0
 glow_bicubic_upscale = true
 glow_high_quality = true
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
-
 [node name="Base" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -24,57 +21,11 @@ environment = SubResource( 2 )
 position = Vector2( 202, 188 )
 collision_mask = 2
 
-[node name="Projectile" parent="." instance=ExtResource( 2 )]
-position = Vector2( 266, 185 )
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -12.0
+volume_db = -8.0
+autoplay = true
 
 [node name="boxes" type="Node2D" parent="."]
 
-[node name="White" type="StaticBody2D" parent="boxes"]
-position = Vector2( 360, 181 )
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boxes/White"]
-position = Vector2( 3, 0 )
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="boxes/White"]
-margin_left = -5.0
-margin_top = -8.0
-margin_right = 11.0
-margin_bottom = 8.0
-
-[node name="Red" type="StaticBody2D" parent="boxes"]
-position = Vector2( 349, 181 )
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boxes/Red"]
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="boxes/Red"]
-modulate = Color( 1.2, 0.5, 0.5, 1 )
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
-
-[node name="Blue" type="StaticBody2D" parent="boxes"]
-position = Vector2( 349, 181 )
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boxes/Blue"]
-position = Vector2( 26, 0 )
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="boxes/Blue"]
-modulate = Color( 0.5, 0.5, 1.2, 1 )
-margin_left = 18.0
-margin_top = -8.0
-margin_right = 34.0
-margin_bottom = 8.0
+[node name="Red" parent="boxes" instance=ExtResource( 2 )]
